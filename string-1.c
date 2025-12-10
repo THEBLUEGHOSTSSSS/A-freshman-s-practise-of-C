@@ -2,7 +2,7 @@
  #define MSG "I am a symbolic constant!\n"
  #define MAXLENGTH 81
  int main(){
-   char words[MAXLENGTH]="I am a string in an array!\n";
+   char words[MAXLENGTH]="I am ai string in an array!\n";
    const char * pt1="Something is pointing at me.";
    puts("Here are some strings:");
    puts(MSG);
