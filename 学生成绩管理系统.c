@@ -224,19 +224,31 @@ strcpy(y, temp);
 // 函数功能：按选择法将数组num的元素值按从低到高排序 
 void AsSortbyNum(STU stu[], int n, int m)
 {
-	int  i, j, k, t;
+	int  i, j, k;
 	for (i=0; i<n-1; i++)
 	{
-        /* ---------- begain ---------- */
+		/* ---------- begain ---------- */
 		k = i;
-        for (j=i+1; j<n; j++)
-        {
-            if (stu[j].num < stu[k].num)
-            {
-                k = j;
-            }
-        }
-        /* ----------- end ----------- */
+		for (j=i+1; j<n; j++)
+		{
+			if (stu[j].num < stu[k].num)
+			{
+				k = j;
+			}
+		}
+		/* ----------- end ----------- */
+		if (k != i)
+		{
+			int t;
+			for (t=0; t<m; t++)
+			{
+				SwapFloat(&stu[k].score[t], &stu[i].score[t]);
+			}
+			SwapFloat(&stu[k].sum, &stu[i].sum);
+			SwapFloat(&stu[k].aver, &stu[i].aver);
+			SwapLong(&stu[k].num, &stu[i].num);
+			SwapChar(stu[k].name, stu[i].name);
+		}
 	}
 }
 // 函数功能：交换法实现字符串按字典顺序排序 
@@ -359,7 +371,7 @@ void WritetoFile(STU stu[], int n, int m)
 	if ((fp = fopen("student.txt","w")) == NULL) 
 	{ 
 		printf("Failure to open score.txt!\n");
-		exit(0);
+		return;
 	}
 fprintf(fp, "%d\t%d\n", n, m);    //将学生人数和课程门数写入文件
 	for (i=0; i<n; i++)
