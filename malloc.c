@@ -8,5 +8,6 @@ int main(){
         cnt++;
     }
     printf("Allocated %d00 MB\n",cnt);
+    free(p);
     return 0;
 }
